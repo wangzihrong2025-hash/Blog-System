@@ -7,7 +7,7 @@ public class PostController {
     private List<String> posts = new ArrayList<>();
 
     @PostMapping
-    public String add(@RequestParam String content) {
+    public String add(String content) {
         posts.add(content);
         return "added";
     }
