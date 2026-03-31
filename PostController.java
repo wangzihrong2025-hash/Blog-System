@@ -1,21 +1,24 @@
 #BlogPostController.java
   
-package com.example.demo.model;
+package com.example.demo.controller;
 
-public class User {
-    private Long id;
-    private String name;
+import org.springframework.web.bind.annotation.*;
+import java.util.*;
 
-    public User() {}
+@RestController
+@RequestMapping("/posts")
+public class PostController {
 
-    public User(Long id, String name) {
-        this.id = id;
-        this.name = name;
+    private List<String> posts = new ArrayList<>();
+
+    @PostMapping
+    public String add(@RequestParam String content) {
+        posts.add(content);
+        return "added";
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    @GetMapping
+    public List<String> list() {
+        return posts;
+    }
 }
